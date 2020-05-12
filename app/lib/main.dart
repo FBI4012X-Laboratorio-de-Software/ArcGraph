@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       title: 'ArcGraph',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+      //  visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'ArcGraph'),
     );
