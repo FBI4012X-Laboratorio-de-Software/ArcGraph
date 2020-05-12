@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       title: 'ArcGraph',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-      //  visualDensity: VisualDensity.adaptivePlatformDensity,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'ArcGraph'),
     );
@@ -28,9 +28,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void _incrementCounter() {
-    setState(() {});
-  }
 
   @override
   Widget build(BuildContext context) {
