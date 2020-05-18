@@ -21,6 +21,8 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  flutter_radar_chart: ^0.1.3
+  
   flutter:
     sdk: flutter
 
