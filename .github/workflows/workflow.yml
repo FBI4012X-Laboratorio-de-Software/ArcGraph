@@ -20,6 +20,7 @@ jobs:
             flutter pub get
             flutter build web --release
       - run: |
+          cd app
           cd build
           cd web
           git init 
