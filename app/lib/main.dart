@@ -33,10 +33,31 @@ class _MyHomePageState extends State<MyHomePage> {
   double numberOfFeatures = 3;
 
   Widget build(BuildContext context) {
-    const ticks = [1, 2, 3, 4, 5, 6, 7, 8];
+    const ticks = [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ];
     var features = ["A", "B", "C", "D", "E", "F", "G", "H"];
     var data = [
-      [4, 4, 4, 4, 4, 7, 7, 8]
+      [20, 18, 16, 11, 3, 19, 1, 13]
     ];
 
     features = features.sublist(0, numberOfFeatures.floor());
@@ -74,7 +95,12 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Expanded(
-              child: RadarChart.light(
+              child: RadarChart(
+                ticksTextStyle: TextStyle(
+                  fontSize: 0,
+                ),
+                outlineColor: Colors.black,
+                axisColor: Color.fromRGBO(0, 0, 0, 200),
                 ticks: ticks,
                 features: features,
                 data: data,
