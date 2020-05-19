@@ -15,10 +15,14 @@ jobs:
         with:
           channel: 'dev'
       - run: flutter config --enable-web
-      - run: flutter pub get
-      - run: flutter build web --release
       - run: |
-          cd app/build/web
+            cd app
+            flutter pub get
+            flutter build web --release
+      - run: |
+          cd app
+          cd build
+          cd web
           git init 
           git config --global user.email adriel.idf@gmail.com
           git config --global user.name Adrieldf
