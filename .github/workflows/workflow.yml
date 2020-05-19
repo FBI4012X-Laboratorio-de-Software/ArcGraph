@@ -18,7 +18,7 @@ jobs:
       - run: |
             cd app
             flutter pub get
-      - run: flutter build web --release
+            flutter build web --release
       - run: |
           cd build
           cd web
