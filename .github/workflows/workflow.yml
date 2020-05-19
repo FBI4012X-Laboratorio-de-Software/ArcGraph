@@ -18,7 +18,7 @@ jobs:
       - run: flutter pub get
       - run: flutter build web --release
       - run: |
-          cd build/web
+          cd app/build/web
           git init 
           git config --global user.email adriel.idf@gmail.com
           git config --global user.name Adrieldf
