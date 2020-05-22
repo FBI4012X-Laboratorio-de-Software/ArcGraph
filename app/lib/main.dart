@@ -31,39 +31,56 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   double numberOfFeatures = 3;
+  Map<String,int> featuresValues = new Map<String,int>();
+
+  List<Widget> GetHabilitiesSliders(List<String> features, num featuresQT) {
+  List<Widget> list = new List<Widget>();
+    for (var i = 0; i < featuresQT; i++) {
+      list.add(Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Text(features[i]),
+            Expanded(
+                child: Slider(
+              value: featuresValues[features[i]].toDouble(),
+              min: 0,
+              max: 100,
+              divisions: 1000,
+              onChanged: (value) {
+                setState(() {
+                  featuresValues[features[i]] = value.floor();
+                });
+              },
+            ))
+          ],
+        ),
+      ));
+    }
+    return list;
+  }
 
   Widget build(BuildContext context) {
-    const ticks = [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      16,
-      17,
-      18,
-      19,
-      20
-    ];
+    
+    var ticks = new List<int>();
+    for (var i = 0; i < 101; i+=10) {
+      ticks.add(i);
+    }
+
     var features = ["A", "B", "C", "D", "E", "F", "G", "H"];
+    for (var i = 0; i < numberOfFeatures; i++) {
+      if (!featuresValues.containsKey(features[i]))
+        featuresValues[features[i]] = 0;
+    }
+
     var data = [
       [20, 18, 16, 11, 3, 19, 1, 13]
     ];
 
     features = features.sublist(0, numberOfFeatures.floor());
-    data = data
-        .map((graph) => graph.sublist(0, numberOfFeatures.floor()))
-        .toList();
+    
+    data = [ List<int>.from(featuresValues.values).sublist(0,numberOfFeatures.floor())];
 
     return Scaffold(
       appBar: AppBar(
@@ -147,40 +164,43 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  Text('Número de habilidades'),
-                  Expanded(
-                      child: Slider(
-                    value: this.numberOfFeatures,
-                    min: 3,
-                    max: 8,
-                    divisions: 5,
-                    onChanged: (value) {
-                      setState(() {
-                        numberOfFeatures = value;
-                      });
-                    },
-                  ))
-                ],
-              ),
-            ),
-            Expanded(
-              child: RadarChart(
-                ticksTextStyle: TextStyle(
-                  fontSize: 0,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Text('Número de habilidades'),
+                      Expanded(
+                          child: Slider(
+                        value: this.numberOfFeatures,
+                        min: 3,
+                        max: 8,
+                        divisions: 5,
+                        onChanged: (value) {
+                          setState(() {
+                            numberOfFeatures = value;
+                          });
+                        },
+                      ))
+                    ],
+                  ),
+                )
+              ] +
+              GetHabilitiesSliders(features, numberOfFeatures) +
+              <Widget>[
+                Expanded(
+                  child: RadarChart(
+                    ticksTextStyle: TextStyle(
+                      fontSize: 0,
+                    ),
+                    outlineColor: Colors.black,
+                    axisColor: Color.fromRGBO(0, 0, 0, 200),
+                    ticks: ticks,
+                    features: features,
+                    data: data,
+                  ),
                 ),
-                outlineColor: Colors.black,
-                axisColor: Color.fromRGBO(0, 0, 0, 200),
-                ticks: ticks,
-                features: features,
-                data: data,
-              ),
-            ),
-          ],
+              ],
         ),
       ),
     );
