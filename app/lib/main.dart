@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     features = features.sublist(0, numberOfFeatures.floor());
     
-    data = [ List<int>.from(featuresValues.values)];
+    data = [ List<int>.from(featuresValues.values).sublist(0,numberOfFeatures.floor())];
 
     return Scaffold(
       appBar: AppBar(
