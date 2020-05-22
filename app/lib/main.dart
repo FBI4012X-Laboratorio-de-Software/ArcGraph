@@ -4,7 +4,7 @@ import 'package:flutter_radar_chart/flutter_radar_chart.dart';
 void main() {
   runApp(MyApp());
 }
- 
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -68,6 +68,80 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Container(
+                  child: Column(
+                children: [
+                  Align(
+                    child: CircleAvatar(
+                      radius: 25,
+                      backgroundColor: Colors.pink.shade800,
+                      child: Text('N'),
+                    ),
+                    alignment: Alignment.topLeft,
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "Nome",
+                        style: TextStyle(color: Colors.white),
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text("email@ucs.br",
+                          style: TextStyle(color: Colors.white))
+                    ],
+                  ),
+                ],
+              )),
+              decoration: BoxDecoration(
+                color: Theme.of(context).accentColor,
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.input),
+              title: Text("Login"),
+              onTap: () {
+                /*   Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => NOMEDACLASSEDAOUTRAPAGINAASERACESSADA()));*/
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.book),
+              title: Text("Disciplinas"),
+              onTap: () {
+                //stuff
+              //  Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.assignment),
+              title: Text("Competências"),
+              onTap: () {
+                //stuff
+             //   Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.assessment),
+              title: Text("Habilidades"),
+              onTap: () {
+                //stuff
+              //  Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
       body: Container(
         child: Column(
