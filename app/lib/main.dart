@@ -108,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Row(
                     children: [
                       Text(
-                        "Nome",
+                        "Nome ",
                         style: TextStyle(color: Colors.white),
                       )
                     ],
