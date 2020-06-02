@@ -1,0 +1,4 @@
+class DimensionToEvaluate
+{
+    String name;
+}

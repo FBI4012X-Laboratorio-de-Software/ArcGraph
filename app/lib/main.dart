@@ -61,6 +61,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return list;
   }
 
+  void GenerateGrades( ) 
+  {
+      
+  }
+
   Widget build(BuildContext context) {
     
     var ticks = new List<int>();
@@ -200,9 +205,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     data: data,
                   ),
                 ),
-              ],
-        ),
-      ),
-    );
-  }
+                RaisedButton(onPressed: () { this.GenerateGrades(); },
+                                child: const Text('Gerar Nota'),)
+                              ],
+                        ),
+                      ),
+                    );
+                  }
+                
 }
