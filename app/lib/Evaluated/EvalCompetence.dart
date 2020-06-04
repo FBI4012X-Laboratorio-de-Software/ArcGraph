@@ -1,16 +1,17 @@
+import 'package:ArcGraph/Evaluated/EvalHability.dart';
 import 'package:ArcGraph/Evaluations/Competence.dart';
-import 'package:ArcGraph/Evaluations/Hability.dart';
 
 class EvalCompetence
 {
   Competence competence;
   String name()=>competence.name;
-  List<Hability> habilities;
+  List<EvalHability> evalHabilities = new List<EvalHability>();
+
   EvalCompetence(Competence competence)
   {
     this.competence = competence;
-    for (var item in competence.habilities) {
-      
+    for (var hability in competence.habilities) {
+      evalHabilities.add(new EvalHability(hability));
     }
   }
 }
