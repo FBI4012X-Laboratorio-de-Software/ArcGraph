@@ -1,3 +1,4 @@
+import 'package:ArcGraph/widgets/subjects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_radar_chart/flutter_radar_chart.dart';
 
@@ -31,10 +32,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   double numberOfFeatures = 3;
-  Map<String,int> featuresValues = new Map<String,int>();
+  Map<String, int> featuresValues = new Map<String, int>();
 
   List<Widget> GetHabilitiesSliders(List<String> features, num featuresQT) {
-  List<Widget> list = new List<Widget>();
+    List<Widget> list = new List<Widget>();
     for (var i = 0; i < featuresQT; i++) {
       list.add(Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -61,15 +62,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return list;
   }
 
-  void GenerateGrades( ) 
-  {
-      
-  }
+  void GenerateGrades() {}
 
   Widget build(BuildContext context) {
-    
     var ticks = new List<int>();
-    for (var i = 0; i < 101; i+=10) {
+    for (var i = 0; i < 101; i += 10) {
       ticks.add(i);
     }
 
@@ -84,8 +81,10 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
 
     features = features.sublist(0, numberOfFeatures.floor());
-    
-    data = [ List<int>.from(featuresValues.values).sublist(0,numberOfFeatures.floor())];
+
+    data = [
+      List<int>.from(featuresValues.values).sublist(0, numberOfFeatures.floor())
+    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -142,8 +141,14 @@ class _MyHomePageState extends State<MyHomePage> {
               leading: const Icon(Icons.book),
               title: Text("Disciplinas"),
               onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => new Subjects(),
+                  ),
+                );
                 //stuff
-              //  Navigator.pop(context);
+                //  Navigator.pop(context);
               },
             ),
             ListTile(
@@ -151,7 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
               title: Text("Competências"),
               onTap: () {
                 //stuff
-             //   Navigator.pop(context);
+                //   Navigator.pop(context);
               },
             ),
             ListTile(
@@ -159,7 +164,7 @@ class _MyHomePageState extends State<MyHomePage> {
               title: Text("Habilidades"),
               onTap: () {
                 //stuff
-              //  Navigator.pop(context);
+                //  Navigator.pop(context);
               },
             ),
           ],
@@ -205,12 +210,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     data: data,
                   ),
                 ),
-                RaisedButton(onPressed: () { this.GenerateGrades(); },
-                                child: const Text('Gerar Nota'),)
-                              ],
-                        ),
-                      ),
-                    );
-                  }
-                
+                RaisedButton(
+                  onPressed: () {
+                    this.GenerateGrades();
+                  },
+                  child: const Text('Gerar Nota'),
+                )
+              ],
+        ),
+      ),
+    );
+  }
 }
