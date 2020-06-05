@@ -27,7 +27,7 @@ jobs:
           git config --global user.email adriel.idf@gmail.com
           git config --global user.name Adrieldf
           git status
-          git remote add origin https://${{secrets.commit_secret}}@github.com/Adrieldf/ArcGraph.git
+          git remote add origin https://${{secrets.commit_secret}}@github.com/FBI4012X-Laboratorio-de-Software/ArcGraph.git
           git checkout -b gh-pages
           git add --all
           git commit -m "update"
