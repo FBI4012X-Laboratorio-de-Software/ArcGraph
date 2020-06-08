@@ -4,8 +4,6 @@ import 'dart:async';
 import 'package:csv/csv.dart';
 import 'package:path_provider/path_provider.dart';
 
-
-
 class CsvReader {
   Future<String> get localPath async {
     final dir = await getApplicationDocumentsDirectory();
@@ -17,9 +15,8 @@ class CsvReader {
     return File('$path/teste.csv');
   }
 
-  void readData() async {
-    final path = await localPath;
-    final input = new File('$path/teste.csv').openRead();
+  void readData(File file) async {
+    final input = file.openRead();
     final csv = await input.transform(utf8.decoder).transform(new CsvToListConverter()).toList();
     print(csv);
     }
