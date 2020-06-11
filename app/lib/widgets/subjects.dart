@@ -1,8 +1,9 @@
 import 'package:ArcGraph/FileHandler.dart';
+import 'package:ArcGraph/FileHandlerWeb.dart';
 import 'package:flutter/material.dart';
 
 class Subjects extends StatelessWidget {
-  final FileHandler fileHandler = new FileHandler();
+  final FileHandlerWeb fileHandler = new FileHandlerWeb();
 
   @override
   Widget build(BuildContext context) {
