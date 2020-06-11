@@ -5,7 +5,7 @@ class EvalHability
 {
     String name()=>this.hability.name;
     Hability hability;
-    List<EvalDimension> dimensions;
+    List<EvalDimension> dimensions = new List<EvalDimension>();
     EvalHability(Hability hability)
     {
       this.hability = hability;

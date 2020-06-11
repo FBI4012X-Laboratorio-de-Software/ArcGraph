@@ -1,3 +1,7 @@
+import 'package:ArcGraph/Evaluated/EvalCompetence.dart';
+import 'package:ArcGraph/Evaluations/Competence.dart';
+import 'package:ArcGraph/Evaluations/DimensionToEvaluate.dart';
+import 'package:ArcGraph/Evaluations/Hability.dart';
 import 'package:ArcGraph/widgets/subjects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_radar_chart/flutter_radar_chart.dart';
@@ -62,7 +66,50 @@ class _MyHomePageState extends State<MyHomePage> {
     return list;
   }
 
-  void GenerateGrades() {}
+  void GenerateGrades() 
+  {
+    var competence = Competence("Competencia1",<Hability>
+    [
+      Hability("Hability 1", <DimensionToEvaluate>[
+        DimensionToEvaluate("Dimension1", 1),
+        DimensionToEvaluate("Dimension2", 1),
+        DimensionToEvaluate("Dimension3", 1),
+      ]),
+      Hability("Hability 2", <DimensionToEvaluate>[
+        DimensionToEvaluate("Dimension1", 1),
+        DimensionToEvaluate("Dimension2", 1),
+        DimensionToEvaluate("Dimension3", 1),
+      ]),
+      Hability("Hability 3", <DimensionToEvaluate>[
+        DimensionToEvaluate("Dimension1", 1),
+        DimensionToEvaluate("Dimension2", 1),
+        DimensionToEvaluate("Dimension3", 1),
+      ]),
+    ]);
+
+    var evalCompetence = EvalCompetence(competence);
+
+  var habilityGradesSum =0.0;
+    for (var hability in evalCompetence.evalHabilities) {
+      var multipliedSum =0.0;
+      var divisorSum = 0.0;
+      for (var dimension in hability.dimensions) {
+        multipliedSum+= dimension.grade*dimension.evalDimension.weight;
+        divisorSum+= dimension.evalDimension.weight;
+      }
+      var habilityGrade = multipliedSum/divisorSum;
+      habilityGradesSum+=habilityGrade;
+    }
+    
+    var finalGrade = habilityGradesSum/evalCompetence.evalHabilities.length;
+    showDialog(
+       context:  context,
+       builder:  (BuildContext context) {
+         return AlertDialog(content: Text("Nota final é " + finalGrade.toString()));
+    },
+   );
+    
+  }
 
   Widget build(BuildContext context) {
     var ticks = new List<int>();
