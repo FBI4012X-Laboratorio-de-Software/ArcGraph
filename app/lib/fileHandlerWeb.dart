@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:ArcGraph/csvReader.dart';
-import 'package:file_picker/file_picker.dart';
+import 'package:file_picker_web/file_picker_web.dart';
 
-class FileHandler {
+class FileHandlerWeb {
   void Import() async {
     final input = await FilePicker.getFile();
-    new CsvReader().readData(input);
+    new CsvReader().readDataFromWeb(input);
   }
 }
