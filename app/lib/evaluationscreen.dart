@@ -181,8 +181,8 @@ class _EvaluationPageState extends State<EvaluationPage> {
                     outlineColor: Colors.black,
                     axisColor: Color.fromRGBO(0, 0, 0, 200),
                     ticks: ticks,
-                    features: features,
-                    data: data,
+                   // features: features, tava dando erro aí comentei
+                   // data: data, aqui tbm
                   ),
                 ),
                 RaisedButton(onPressed: () { this.GenerateGrades(); },
