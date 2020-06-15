@@ -5,6 +5,6 @@ import 'package:file_picker_web/file_picker_web.dart';
 class FileHandlerWeb {
   void Import() async {
     final input = await FilePicker.getFile();
-    new CsvReader().readDataFromWeb(input);
+    // new CsvReader().readDataFromWeb(input);
   }
 }

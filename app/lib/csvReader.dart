@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:async';
-import 'dart:html' as html;
+// import 'dart:html' as html;
 import 'package:csv/csv.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -25,24 +25,24 @@ class CsvReader {
     print(csv);
   }
 
-  void readDataFromWeb(html.File file) async {
-    print("entrei");
-    final blob = file.slice(0, file.size);
+  // void readDataFromWeb(html.File file) async {
+  //   print("entrei");
+  //   final blob = file.slice(0, file.size);
 
-    html.FileReader reader = new html.FileReader();
-    var stream = reader.onLoadEnd.first.then(
-      (_) {
-        return reader.result;
-      },
-    ).asStream();
+  //   html.FileReader reader = new html.FileReader();
+  //   var stream = reader.onLoadEnd.first.then(
+  //     (_) {
+  //       return reader.result;
+  //     },
+  //   ).asStream();
 
-    reader.readAsArrayBuffer(blob);
+  //   reader.readAsArrayBuffer(blob);
 
-    final csv = await (stream.cast<List<int>>())
-        .transform(utf8.decoder)
-        .transform(new CsvToListConverter())
-        .toList();
+  //   final csv = await (stream.cast<List<int>>())
+  //       .transform(utf8.decoder)
+  //       .transform(new CsvToListConverter())
+  //       .toList();
 
-    print(csv);
-  }
+  //   print(csv);
+  // }
 }
