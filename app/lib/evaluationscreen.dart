@@ -41,7 +41,7 @@ class _EvaluationPageState extends State<EvaluationPage> {
 
   }
 
-  List<Widget> GetHabilitiesSliders(List<EvalHability> habilities) {
+  List<Widget> getHabilitiesSliders(List<EvalHability> habilities) {
   List<Widget> list = new List<Widget>();
     for (var hability in habilities) {
       list.add(Padding(
@@ -69,7 +69,7 @@ class _EvaluationPageState extends State<EvaluationPage> {
     return list;
   }
 
-  void GenerateGrades( ) 
+  void generateGrades( ) 
   {
       
   }
@@ -171,7 +171,7 @@ class _EvaluationPageState extends State<EvaluationPage> {
                   ),
                 )
               ] +
-              GetHabilitiesSliders(evalCompetence.evalHabilities) +
+              getHabilitiesSliders(evalCompetence.evalHabilities) +
               <Widget>[
                 Expanded(
                   child: RadarChart(
@@ -185,7 +185,7 @@ class _EvaluationPageState extends State<EvaluationPage> {
                    // data: data, aqui tbm
                   ),
                 ),
-                RaisedButton(onPressed: () { this.GenerateGrades(); },
+                RaisedButton(onPressed: () { this.generateGrades(); },
                                 child: const Text('Gerar Nota'),)
                               ],
                         ),
