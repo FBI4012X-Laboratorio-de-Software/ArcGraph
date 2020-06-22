@@ -1,5 +1,5 @@
-import 'package:ArcGraph/Evaluated/EvalHability.dart';
-import 'package:ArcGraph/Evaluations/Competence.dart';
+import 'package:ArcGraph/models/evaluations/competence.dart';
+import 'package:ArcGraph/models/evaluated/evalHability.dart';
 
 class EvalCompetence
 {

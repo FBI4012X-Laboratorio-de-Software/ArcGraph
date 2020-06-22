@@ -1,4 +1,5 @@
-import 'DimensionToEvaluate.dart';
+import 'package:ArcGraph/models/evaluations/dimensionToEvaluate.dart';
+
 class Hability
 {
     Hability(String name, List<DimensionToEvaluate> dimensions)

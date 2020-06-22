@@ -1,4 +1,5 @@
-import 'Hability.dart';
+import 'package:ArcGraph/models/evaluations/hability.dart';
+
 class Competence
 {
     Competence(String name, List<Hability> habilities)

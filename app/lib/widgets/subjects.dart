@@ -1,5 +1,5 @@
-import 'package:ArcGraph/FileHandler.dart';
-import 'package:ArcGraph/FileHandlerWeb.dart';
+import 'package:ArcGraph/models/files/fileHandler.dart';
+import 'package:ArcGraph/models/files/fileHandlerWeb.dart';
 import 'package:flutter/material.dart';
 
 class Subjects extends StatelessWidget {
@@ -29,7 +29,7 @@ class Subjects extends StatelessWidget {
                         ),
                       ),
                       FlatButton(
-                        onPressed: () => fileHandler.Import(),
+                        onPressed: () => fileHandler.import(),
                         child: Icon(
                           Icons.search,
                         ),

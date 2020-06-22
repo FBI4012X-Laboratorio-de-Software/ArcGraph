@@ -1,6 +1,6 @@
-import 'package:ArcGraph/Evaluations/Competence.dart';
-import 'package:ArcGraph/Evaluations/DimensionToEvaluate.dart';
-import 'package:ArcGraph/Evaluations/Hability.dart';
+import 'package:ArcGraph/models/evaluations/competence.dart';
+import 'package:ArcGraph/models/evaluations/dimensionToEvaluate.dart';
+import 'package:ArcGraph/models/evaluations/hability.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_radar_chart/flutter_radar_chart.dart';
 

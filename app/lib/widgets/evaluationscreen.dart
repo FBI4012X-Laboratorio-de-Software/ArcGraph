@@ -1,10 +1,8 @@
-import 'package:ArcGraph/Evaluated/EvalCompetence.dart';
-import 'package:ArcGraph/Evaluations/Competence.dart';
-import 'package:ArcGraph/Evaluations/Hability.dart';
+import 'package:ArcGraph/models/evaluated/evalCompetence.dart';
+import 'package:ArcGraph/models/evaluations/competence.dart';
+import 'package:ArcGraph/models/evaluated/evalHability.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_radar_chart/flutter_radar_chart.dart';
-
-import 'Evaluated/EvalHability.dart';
 
 // class EvaluationAppPage extends StatelessWidget {
 //   // This widget is the root of your application.

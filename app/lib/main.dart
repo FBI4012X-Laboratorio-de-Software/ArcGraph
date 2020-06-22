@@ -1,8 +1,8 @@
-import 'package:ArcGraph/Evaluated/EvalCompetence.dart';
-import 'package:ArcGraph/Evaluations/Competence.dart';
-import 'package:ArcGraph/Evaluations/DimensionToEvaluate.dart';
-import 'package:ArcGraph/Evaluations/Hability.dart';
-import 'package:ArcGraph/graphs.dart';
+import 'package:ArcGraph/models/evaluated/evalCompetence.dart';
+import 'package:ArcGraph/models/evaluations/competence.dart';
+import 'package:ArcGraph/models/evaluations/dimensionToEvaluate.dart';
+import 'package:ArcGraph/models/evaluations/hability.dart';
+import 'package:ArcGraph/widgets/graphs.dart';
 import 'package:ArcGraph/widgets/subjects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_radar_chart/flutter_radar_chart.dart';
@@ -87,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ]);
   }
 
-  void GenerateGrades() {
+  void generateGrades() {
     var competence = Competence("Competencia1", <Hability>[
       Hability("Hability 1", <DimensionToEvaluate>[
         DimensionToEvaluate("Dimension1", 1),
@@ -240,7 +240,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Graphs(competence: this.getCompentence())));
+                        builder: (context) =>
+                            Graphs(competence: this.getCompentence())));
               },
             ),
           ],
@@ -288,7 +289,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 RaisedButton(
                   onPressed: () {
-                    this.GenerateGrades();
+                    this.generateGrades();
                   },
                   child: const Text('Gerar Nota'),
                 )

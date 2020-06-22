@@ -1,4 +1,4 @@
-import 'package:ArcGraph/Evaluations/DimensionToEvaluate.dart';
+import 'package:ArcGraph/models/evaluations/dimensionToEvaluate.dart';
 
 class EvalDimension
 {
