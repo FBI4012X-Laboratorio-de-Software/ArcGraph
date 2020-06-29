@@ -5,6 +5,7 @@ class DimensionToEvaluate
       this.name = name;
       this.weight = weight;
     }
+    
     String name;
     double weight;
 }
