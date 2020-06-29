@@ -3,6 +3,7 @@ import 'package:ArcGraph/models/evaluations/competence.dart';
 import 'package:ArcGraph/models/evaluations/dimensionToEvaluate.dart';
 import 'package:ArcGraph/models/evaluations/hability.dart';
 import 'package:ArcGraph/widgets/graphs.dart';
+import 'package:ArcGraph/widgets/student.dart';
 import 'package:ArcGraph/widgets/subjects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_radar_chart/flutter_radar_chart.dart';
@@ -229,8 +230,8 @@ class _MyHomePageState extends State<MyHomePage> {
               leading: const Icon(Icons.assessment),
               title: Text("Habilidades"),
               onTap: () {
-                //stuff
-                //  Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Student()));
               },
             ),
             ListTile(
