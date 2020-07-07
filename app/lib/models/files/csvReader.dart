@@ -17,6 +17,8 @@ class CsvReader {
   }
 
   void readData(File file) async {
+    if (file == null) return;
+
     final input = file.openRead();
     final csv = await input
         .transform(utf8.decoder)
