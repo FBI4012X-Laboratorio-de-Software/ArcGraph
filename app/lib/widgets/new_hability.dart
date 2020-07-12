@@ -47,6 +47,10 @@ class _NewHabilityState extends State<NewHability> {
     Navigator.of(context).pop();
   }
 
+  void cancel() {
+    Navigator.of(context).pop();
+  }
+
   void addNewDimension(String name, double weight) {
     final dimension = new DimensionToEvaluate(name, weight);
 
@@ -150,9 +154,22 @@ class _NewHabilityState extends State<NewHability> {
                   ),
                 ),
               ),
-              RaisedButton(
-                child: Text("Criar habilidade"),
-                onPressed: submitData,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  RaisedButton(
+                    color: Color.fromRGBO(200, 80, 80, 0.5),
+                    shape: CircleBorder(),
+                    child: Icon(Icons.close),
+                    onPressed: cancel,
+                  ),
+                  RaisedButton(
+                    color: Color.fromRGBO(80, 200, 80, 0.5),
+                    shape: CircleBorder(),
+                    child: Icon(Icons.check),
+                    onPressed: submitData,
+                  ),
+                ],
               )
             ],
           ),

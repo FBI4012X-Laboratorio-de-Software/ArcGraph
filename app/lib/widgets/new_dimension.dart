@@ -49,6 +49,10 @@ class _NewDimensionState extends State<NewDimension> {
     Navigator.of(context).pop();
   }
 
+  void cancel() {
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -74,9 +78,22 @@ class _NewDimensionState extends State<NewDimension> {
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
                 onSubmitted: (_) {},
               ),
-              RaisedButton(
-                child: Text("Criar dimensão"),
-                onPressed: submitData,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  RaisedButton(
+                    color: Color.fromRGBO(200, 80, 80, 0.5),
+                    shape: CircleBorder(),
+                    child: Icon(Icons.close),
+                    onPressed: cancel,
+                  ),
+                  RaisedButton(
+                    color: Color.fromRGBO(80, 200, 80, 0.5),
+                    shape: CircleBorder(),
+                    child: Icon(Icons.check),
+                    onPressed: submitData,
+                  ),
+                ],
               )
             ],
           ),

@@ -48,6 +48,10 @@ class _NewCompetenceState extends State<NewCompetence> {
     Navigator.of(context).pop();
   }
 
+  void cancel() {
+    Navigator.of(context).pop();
+  }
+
   void addNewHability(
     String name,
     List<DimensionToEvaluate> dimensions,
@@ -154,9 +158,22 @@ class _NewCompetenceState extends State<NewCompetence> {
                   ),
                 ),
               ),
-              RaisedButton(
-                child: Text("Criar competência"),
-                onPressed: submitData,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  RaisedButton(
+                    color: Color.fromRGBO(200, 80, 80, 0.5),
+                    shape: CircleBorder(),
+                    child: Icon(Icons.close),
+                    onPressed: cancel,
+                  ),
+                  RaisedButton(
+                    color: Color.fromRGBO(80, 200, 80, 0.5),
+                    shape: CircleBorder(),
+                    child: Icon(Icons.check),
+                    onPressed: submitData,
+                  ),
+                ],
               )
             ],
           ),
