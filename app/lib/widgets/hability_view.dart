@@ -5,4 +5,6 @@ class HabilityView {
   bool isExpanded;
 
   HabilityView(this.hability, this.isExpanded);
+
+  int average() => (this.hability.average() * 10).floor();
 }

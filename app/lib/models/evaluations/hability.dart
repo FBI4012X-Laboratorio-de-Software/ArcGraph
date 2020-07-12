@@ -8,5 +8,12 @@ class Hability {
   String name;
   List<DimensionToEvaluate> dimensions;
 
-  int average() => 10;
+  double average() {
+    double sum = 0;
+    for (var dimension in dimensions) {
+      sum += dimension.value * dimension.weight;
+    }
+
+    return sum;
+  }
 }

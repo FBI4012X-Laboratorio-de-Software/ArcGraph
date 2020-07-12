@@ -28,12 +28,6 @@ class _EvaluatorState extends State<Evaluator> {
       ticks.add(i);
     }
 
-    var features = ["A", "B", "C"];
-
-    var data = [
-      [20, 18, 16]
-    ];
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Notas'),
@@ -86,7 +80,7 @@ class _EvaluatorState extends State<Evaluator> {
                                             child: Slider(
                                               value: dimensionToEvaluate.value,
                                               min: 0,
-                                              max: 100,
+                                              max: 10,
                                               divisions: 100,
                                               onChanged: (value) {
                                                 setState(() {
@@ -118,8 +112,14 @@ class _EvaluatorState extends State<Evaluator> {
                         outlineColor: Colors.black,
                         axisColor: Color.fromRGBO(0, 0, 0, 200),
                         ticks: ticks,
-                        features: features,
-                        data: data,
+                        features: habilitiesView
+                            .map((HabilityView h) => h.hability.name)
+                            .toList(),
+                        data: [
+                          habilitiesView
+                              .map((HabilityView h) => h.average())
+                              .toList(),
+                        ],
                       ),
                     ),
                   ],
