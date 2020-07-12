@@ -122,11 +122,31 @@ class _NewHabilityState extends State<NewHability> {
                                         ),
                                         child: Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
+                                            IconButton(
+                                                icon: Icon(Icons.edit),
+                                                onPressed: () {
+                                                  startEditDimension(
+                                                    context,
+                                                    dimension,
+                                                  );
+                                                }),
                                             Text(
                                               dimension.name,
                                             ),
+                                            Spacer(flex: 2),
+                                            Text(
+                                              dimension.weight.toString(),
+                                            ),
+                                            IconButton(
+                                                icon: Icon(Icons.delete),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    dimensions
+                                                        .remove(dimension);
+                                                  });
+                                                }),
                                           ],
                                         ),
                                       ),
