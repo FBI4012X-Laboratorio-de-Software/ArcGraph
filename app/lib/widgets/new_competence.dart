@@ -104,8 +104,22 @@ class _NewCompetenceState extends State<NewCompetence> {
             bottom: MediaQuery.of(context).viewInsets.bottom + 10,
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              RichText(
+                text: TextSpan(
+                  text: "Competência",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Divider(
+                color: Colors.grey.withAlpha(200),
+                thickness: 1,
+              ),
               TextField(
                 decoration: InputDecoration(labelText: 'Nome:'),
                 controller: nameController,
@@ -130,11 +144,27 @@ class _NewCompetenceState extends State<NewCompetence> {
                                         ),
                                         child: Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
+                                            IconButton(
+                                                icon: Icon(Icons.edit),
+                                                onPressed: () {
+                                                  startEditHability(
+                                                    context,
+                                                    hability,
+                                                  );
+                                                }),
                                             Text(
                                               hability.name,
                                             ),
+                                            Spacer(flex: 2),
+                                            IconButton(
+                                                icon: Icon(Icons.delete),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    habilities.remove(hability);
+                                                  });
+                                                }),
                                           ],
                                         ),
                                       ),

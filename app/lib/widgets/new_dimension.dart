@@ -65,8 +65,22 @@ class _NewDimensionState extends State<NewDimension> {
             bottom: MediaQuery.of(context).viewInsets.bottom + 10,
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              RichText(
+                text: TextSpan(
+                  text: "Dimensão",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Divider(
+                color: Colors.grey.withAlpha(200),
+                thickness: 1,
+              ),
               TextField(
                 decoration: InputDecoration(labelText: 'Nome:'),
                 controller: nameController,
