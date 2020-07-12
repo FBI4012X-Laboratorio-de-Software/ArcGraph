@@ -107,6 +107,7 @@ class _NewHabilityState extends State<NewHability> {
                 text: TextSpan(
                   text: "Habilidade",
                   style: TextStyle(
+                    color: Colors.black,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),

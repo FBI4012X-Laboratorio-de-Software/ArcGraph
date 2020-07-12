@@ -72,6 +72,7 @@ class _NewDimensionState extends State<NewDimension> {
                 text: TextSpan(
                   text: "Dimensão",
                   style: TextStyle(
+                    color: Colors.black,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),

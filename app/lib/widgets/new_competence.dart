@@ -111,6 +111,7 @@ class _NewCompetenceState extends State<NewCompetence> {
                 text: TextSpan(
                   text: "Competência",
                   style: TextStyle(
+                    color: Colors.black,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),

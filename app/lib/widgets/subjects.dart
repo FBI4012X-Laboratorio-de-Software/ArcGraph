@@ -146,6 +146,7 @@ class _SubjectsState extends State<Subjects> {
                         text: TextSpan(
                           text: "Disciplina",
                           style: TextStyle(
+                            color: Colors.black,
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
@@ -226,6 +227,7 @@ class _SubjectsState extends State<Subjects> {
                         text: TextSpan(
                           text: "Competências",
                           style: TextStyle(
+                            color: Colors.black,
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
