@@ -11,5 +11,8 @@ class Subject {
   List<Student> students;
   List<Test> tests;
 
-  Subject(this.name, this.register, this.professor);
+  Subject(this.name, this.register, this.professor) {
+    students = new List<Student>();
+    tests = new List<Test>();
+  }
 }

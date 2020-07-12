@@ -30,27 +30,24 @@ class CsvReader {
     return setData(csv);
   }
 
-  Subject setData(List<List<dynamic>> csv)
-{
-    var subject = new Subject(csv[3][1], csv[2][1], csv[5][1]);
-    var schedule = csv[4][1].toString().split('/');
+  Subject setData(List<List<dynamic>> csv) {
+    var subject = new Subject(csv[4][2], csv[3][2], csv[6][2]);
+    var schedule = csv[5][2].toString().split('/');
     subject.time = schedule[0];
     subject.location = schedule[1];
-    int x = 7;
-    while(csv[x][1] != null)
-    {
-      subject.students.add(new Student(csv[x][1], csv[x][2]));
-      x++;
+
+    for (var x = 10; x < csv.length; x++) {
+      subject.students.add(new Student(csv[x][2], csv[x][1]));
     }
-    x = 3;
-    while(csv[6][x].toString().startsWith("Aval"))
-    {
+
+    int x = 3;
+    while (csv[8][x].toString().startsWith("Aval")) {
       subject.tests.add(new Test(csv[6][x], 10));
       x++;
     }
 
     return subject;
-}
+  }
 
   // void readDataFromWeb(html.File file) async {
   //   print("entrei");
