@@ -6,6 +6,7 @@ import 'package:ArcGraph/widgets/hability_view.dart';
 import 'package:ArcGraph/widgets/new_competence.dart';
 // import 'package:ArcGraph/models/files/fileHandlerWeb.dart';
 import 'package:flutter/material.dart';
+import '../models/subject.dart';
 
 class Subjects extends StatefulWidget {
   @override
@@ -28,6 +29,7 @@ class _SubjectsState extends State<Subjects> {
   bool descriptionFieldContainsError = false;
   bool hourFieldContainsError = false;
   bool locationFieldContainsError = false;
+  Subject subject;
 
   void submitData() {
     setState(() {
@@ -117,7 +119,15 @@ class _SubjectsState extends State<Subjects> {
                         ),
                       ),
                       FlatButton(
-                        onPressed: () => fileHandler.import(),
+                        onPressed:()
+                        {
+                          subject = fileHandler.import() as Subject;
+                          codeController.text = subject.register;
+                          disciplineController.text = subject.name;
+                          descriptionController.text = subject.name ;
+                          hourController.text = subject.time;
+                          locationController.text = subject.location;
+                        },
                         child: Icon(
                           Icons.search,
                         ),
