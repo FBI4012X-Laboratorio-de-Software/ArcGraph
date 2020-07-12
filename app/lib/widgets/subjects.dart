@@ -94,6 +94,21 @@ class _SubjectsState extends State<Subjects> {
     );
   }
 
+  void importSubject() {
+    fileHandler.import().then(
+          (Subject subject) => {
+            if (subject != null)
+              {
+                codeController.text = subject.register,
+                disciplineController.text = subject.name,
+                descriptionController.text = subject.name,
+                hourController.text = subject.time,
+                locationController.text = subject.location,
+              }
+          },
+        );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -115,18 +130,11 @@ class _SubjectsState extends State<Subjects> {
                     children: [
                       Container(
                         child: Text(
-                          'Caminho do csv:',
+                          'Importar csv:',
                         ),
                       ),
                       FlatButton(
-                        onPressed: () {
-                          subject = fileHandler.import() as Subject;
-                          codeController.text = subject.register;
-                          disciplineController.text = subject.name;
-                          descriptionController.text = subject.name;
-                          hourController.text = subject.time;
-                          locationController.text = subject.location;
-                        },
+                        onPressed: () => importSubject(),
                         child: Icon(
                           Icons.search,
                         ),
