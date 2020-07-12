@@ -131,6 +131,9 @@ class _SubjectsState extends State<Subjects> {
                       Container(
                         child: Text(
                           'Importar csv:',
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
                         ),
                       ),
                       FlatButton(
