@@ -150,6 +150,19 @@ class _SubjectsState extends State<Subjects> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      RichText(
+                        text: TextSpan(
+                          text: "Disciplina",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Divider(
+                        color: Colors.grey.withAlpha(200),
+                        thickness: 1,
+                      ),
                       TextField(
                         decoration: InputDecoration(
                             labelText: 'Código:',
@@ -217,6 +230,19 @@ class _SubjectsState extends State<Subjects> {
                   padding: EdgeInsets.all(10),
                   child: Column(
                     children: [
+                      RichText(
+                        text: TextSpan(
+                          text: "Competências",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Divider(
+                        color: Colors.grey.withAlpha(200),
+                        thickness: 1,
+                      ),
                       Container(
                         child: competences.isEmpty
                             ? Text("Nenhuma competência cadastrada.")
@@ -230,11 +256,28 @@ class _SubjectsState extends State<Subjects> {
                                           ),
                                           child: Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.center,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
+                                              IconButton(
+                                                  icon: Icon(Icons.edit),
+                                                  onPressed: () {
+                                                    startEditCompetence(
+                                                      context,
+                                                      competence,
+                                                    );
+                                                  }),
                                               Text(
                                                 competence.name,
                                               ),
+                                              Spacer(flex: 2),
+                                              IconButton(
+                                                  icon: Icon(Icons.delete),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      competences
+                                                          .remove(competence);
+                                                    });
+                                                  }),
                                             ],
                                           ),
                                         ))
