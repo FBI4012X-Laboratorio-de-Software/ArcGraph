@@ -15,10 +15,12 @@ class Evaluator extends StatefulWidget {
 
 class _EvaluatorState extends State<Evaluator> {
   final List<Hability> habilities;
+  List<int> average;
   List<HabilityView> habilitiesView;
 
   _EvaluatorState(this.habilities) {
     habilitiesView = habilities.map((e) => HabilityView(e, false)).toList();
+    average = habilities.map((e) => 60).toList();
   }
 
   @override
@@ -30,7 +32,7 @@ class _EvaluatorState extends State<Evaluator> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Notas'),
+        title: Text('Avaliação'),
       ),
       body: habilitiesView.isEmpty
           ? Text("Nenhuma habilidade cadastrada")
@@ -116,6 +118,7 @@ class _EvaluatorState extends State<Evaluator> {
                             .map((HabilityView h) => h.hability.name)
                             .toList(),
                         data: [
+                          average,
                           habilitiesView
                               .map((HabilityView h) => h.average())
                               .toList(),
