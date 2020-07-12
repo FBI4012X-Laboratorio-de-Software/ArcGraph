@@ -6,6 +6,7 @@ import 'package:ArcGraph/widgets/graphs.dart';
 import 'package:ArcGraph/widgets/student.dart';
 import 'package:ArcGraph/widgets/subjects.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_radar_chart/flutter_radar_chart.dart';
 
 void main() {
@@ -36,127 +37,57 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  @override
-  double numberOfFeatures = 3;
-  Map<String, int> featuresValues = new Map<String, int>();
+  TextStyle titleStyle =
+      TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue);
+  TextStyle descriptionStyle =
+      TextStyle(fontSize: 12, fontStyle: FontStyle.italic, color: Colors.black);
 
-  List<Widget> GetHabilitiesSliders(List<String> features, num featuresQT) {
-    List<Widget> list = new List<Widget>();
-    for (var i = 0; i < featuresQT; i++) {
-      list.add(Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
-            Text(features[i]),
-            Expanded(
-                child: Slider(
-              value: featuresValues[features[i]].toDouble(),
-              min: 0,
-              max: 100,
-              divisions: 1000,
-              onChanged: (value) {
-                setState(() {
-                  featuresValues[features[i]] = value.floor();
-                });
-              },
-            ))
-          ],
+  Card tappableCard(String title, String description, Function tapFunction) {
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      child: InkWell(
+        splashColor: Theme.of(context).accentColor.withAlpha(30),
+        onTap: () {
+          tapFunction();
+        },
+        child: Container(
+          padding: EdgeInsets.all(20),
+          width: 300,
+          height: 100,
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      text: title,
+                      style: titleStyle,
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      text: description,
+                      style: descriptionStyle,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
-      ));
-    }
-    return list;
-  }
-
-  Competence getCompentence() {
-    return new Competence("Competencia1", <Hability>[
-      Hability("Hability 1", <DimensionToEvaluate>[
-        DimensionToEvaluate("Dimension1", 1),
-        DimensionToEvaluate("Dimension2", 1),
-        DimensionToEvaluate("Dimension3", 1),
-      ]),
-      Hability("Hability 2", <DimensionToEvaluate>[
-        DimensionToEvaluate("Dimension1", 1),
-        DimensionToEvaluate("Dimension2", 1),
-        DimensionToEvaluate("Dimension3", 1),
-      ]),
-      Hability("Hability 3", <DimensionToEvaluate>[
-        DimensionToEvaluate("Dimension1", 1),
-        DimensionToEvaluate("Dimension2", 1),
-        DimensionToEvaluate("Dimension3", 1),
-      ]),
-    ]);
-  }
-
-  void generateGrades() {
-    var competence = Competence("Competencia1", <Hability>[
-      Hability("Hability 1", <DimensionToEvaluate>[
-        DimensionToEvaluate("Dimension1", 1),
-        DimensionToEvaluate("Dimension2", 1),
-        DimensionToEvaluate("Dimension3", 1),
-      ]),
-      Hability("Hability 2", <DimensionToEvaluate>[
-        DimensionToEvaluate("Dimension1", 1),
-        DimensionToEvaluate("Dimension2", 1),
-        DimensionToEvaluate("Dimension3", 1),
-      ]),
-      Hability("Hability 3", <DimensionToEvaluate>[
-        DimensionToEvaluate("Dimension1", 1),
-        DimensionToEvaluate("Dimension2", 1),
-        DimensionToEvaluate("Dimension3", 1),
-      ]),
-    ]);
-
-    var evalCompetence = EvalCompetence(competence);
-
-    var habilityGradesSum = 0.0;
-    for (var hability in evalCompetence.evalHabilities) {
-      var multipliedSum = 0.0;
-      var divisorSum = 0.0;
-      for (var dimension in hability.dimensions) {
-        multipliedSum += dimension.grade * dimension.evalDimension.weight;
-        divisorSum += dimension.evalDimension.weight;
-      }
-      var habilityGrade = multipliedSum / divisorSum;
-      habilityGradesSum += habilityGrade;
-    }
-
-    var finalGrade = habilityGradesSum / evalCompetence.evalHabilities.length;
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-            content: Text("Nota final é " + finalGrade.toString()));
-      },
+      ),
     );
   }
 
+  @override
   Widget build(BuildContext context) {
-    var ticks = new List<int>();
-    for (var i = 0; i < 101; i += 10) {
-      ticks.add(i);
-    }
-
-    var features = ["A", "B", "C", "D", "E", "F", "G", "H"];
-    for (var i = 0; i < numberOfFeatures; i++) {
-      if (!featuresValues.containsKey(features[i]))
-        featuresValues[features[i]] = 0;
-    }
-
-    var data = [
-      [20, 18, 16, 11, 3, 19, 1, 13]
-    ];
-
-    features = features.sublist(0, numberOfFeatures.floor());
-
-    data = [
-      List<int>.from(featuresValues.values).sublist(0, numberOfFeatures.floor())
-    ];
-
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -234,68 +165,67 @@ class _MyHomePageState extends State<MyHomePage> {
                     MaterialPageRoute(builder: (context) => Student()));
               },
             ),
-            ListTile(
-              leading: const Icon(Icons.pie_chart),
-              title: Text("Gráfico"),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            Graphs(competence: this.getCompentence())));
-              },
-            ),
           ],
         ),
       ),
-      body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      Text('Número de habilidades'),
-                      Expanded(
-                          child: Slider(
-                        value: this.numberOfFeatures,
-                        min: 3,
-                        max: 8,
-                        divisions: 5,
-                        onChanged: (value) {
-                          setState(() {
-                            numberOfFeatures = value;
-                          });
-                        },
-                      ))
-                    ],
-                  ),
-                )
-              ] +
-              GetHabilitiesSliders(features, numberOfFeatures) +
-              <Widget>[
-                Expanded(
-                  child: RadarChart(
-                    ticksTextStyle: TextStyle(
-                      fontSize: 0,
-                    ),
-                    outlineColor: Colors.black,
-                    axisColor: Color.fromRGBO(0, 0, 0, 200),
-                    ticks: ticks,
-                    features: features,
-                    data: data,
-                  ),
-                ),
-                RaisedButton(
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            pinned: true,
+            floating: false,
+            snap: false,
+            expandedHeight: 150.0,
+            flexibleSpace: const FlexibleSpaceBar(
+              title: Text('Arc Graph'),
+            ),
+            actions: <Widget>[
+              /*IconButton(
+                  icon: const Icon(Icons.close),
+                  tooltip: 'Exit',
                   onPressed: () {
-                    this.generateGrades();
+                    SystemChannels.platform.invokeMethod('SystemNavigator.pop');
                   },
-                  child: const Text('Gerar Nota'),
-                )
-              ],
-        ),
+                ),*/
+            ],
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(25),
+                  bottomRight: Radius.circular(25)),
+            ),
+          ),
+          SliverList(
+              delegate: SliverChildListDelegate(
+            <Widget>[
+              tappableCard(
+                  "Disciplinas",
+                  "Selecione aqui para visualizar e gerenciar a lista de disciplinas",
+                  () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => new Subjects(),
+                        ),
+                      )),
+              tappableCard(
+                  "Competências",
+                  "Selecione aqui para visualizar e gerenciar a lista de competências",
+                  () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => new Subjects(),
+                        ),
+                      )),
+              tappableCard(
+                  "Habilidades",
+                  "Selecione aqui para visualizar e gerenciar a lista de habilidades",
+                  () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => new Student(),
+                        ),
+                      )),
+            ],
+          ))
+        ],
       ),
     );
   }
