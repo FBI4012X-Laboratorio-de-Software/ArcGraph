@@ -9,6 +9,10 @@ import 'package:flutter/material.dart';
 import '../models/subject.dart';
 
 class Subjects extends StatefulWidget {
+  Function addNewSubject;
+
+  Subjects(this.addNewSubject);
+
   @override
   _SubjectsState createState() => _SubjectsState();
 }
@@ -29,7 +33,6 @@ class _SubjectsState extends State<Subjects> {
   bool descriptionFieldContainsError = false;
   bool hourFieldContainsError = false;
   bool locationFieldContainsError = false;
-  Subject subject;
 
   void submitData() {
     setState(() {
@@ -45,6 +48,30 @@ class _SubjectsState extends State<Subjects> {
         descriptionController.text.isEmpty ||
         hourController.text.isEmpty ||
         locationController.text.isEmpty) return;
+
+    if (competences.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Deve haver competências cadastradas."),
+          );
+        },
+      );
+      return;
+    }
+
+    final subject = Subject(
+      disciplineController.text,
+      disciplineController.text,
+      "",
+    );
+
+    subject.location = locationController.text;
+    subject.time = hourController.text;
+    subject.competences = competences;
+
+    widget.addNewSubject(subject);
 
     Navigator.of(context).pop();
   }

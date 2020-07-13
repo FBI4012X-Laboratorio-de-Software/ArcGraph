@@ -84,6 +84,17 @@ class _EvaluatorState extends State<Evaluator> {
                                               min: 0,
                                               max: 10,
                                               divisions: 100,
+                                              activeColor: dimensionToEvaluate
+                                                          .value >
+                                                      6
+                                                  ? Color.fromRGBO(
+                                                      80, 200, 80, 0.5)
+                                                  : (dimensionToEvaluate.value >
+                                                          3
+                                                      ? Color.fromRGBO(
+                                                          200, 200, 80, 0.5)
+                                                      : Color.fromRGBO(
+                                                          200, 80, 80, 0.5)),
                                               onChanged: (value) {
                                                 setState(() {
                                                   dimensionToEvaluate.value =

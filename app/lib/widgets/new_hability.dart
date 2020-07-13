@@ -34,6 +34,18 @@ class _NewHabilityState extends State<NewHability> {
       return;
     }
 
+    if (dimensions.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Deve haver dimensões cadastradas."),
+          );
+        },
+      );
+      return;
+    }
+
     if (widget.hability == null)
       widget.addNewHability(
         nameController.text,

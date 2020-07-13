@@ -35,6 +35,18 @@ class _NewCompetenceState extends State<NewCompetence> {
       return;
     }
 
+    if (habilities.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Deve haver habilidades cadastradas."),
+          );
+        },
+      );
+      return;
+    }
+
     if (widget.competence == null)
       widget.addNewCompetence(
         nameController.text,

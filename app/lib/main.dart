@@ -2,6 +2,7 @@ import 'package:ArcGraph/models/evaluated/evalCompetence.dart';
 import 'package:ArcGraph/models/evaluations/competence.dart';
 import 'package:ArcGraph/models/evaluations/dimensionToEvaluate.dart';
 import 'package:ArcGraph/models/evaluations/hability.dart';
+import 'package:ArcGraph/models/subject.dart';
 import 'package:ArcGraph/widgets/graphs.dart';
 import 'package:ArcGraph/widgets/student.dart';
 import 'package:ArcGraph/widgets/subjects.dart';
@@ -37,6 +38,40 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final subjects = List<Subject>();
+  final defaultHabilities = [
+    new Hability(
+      "H1",
+      [
+        new DimensionToEvaluate("D1", .4),
+        new DimensionToEvaluate("D2", .4),
+        new DimensionToEvaluate("D3", .2),
+      ],
+    ),
+    new Hability(
+      "H2",
+      [
+        new DimensionToEvaluate("D1", .5),
+        new DimensionToEvaluate("D2", .5),
+      ],
+    ),
+    new Hability(
+      "H3",
+      [
+        new DimensionToEvaluate("D1", .2),
+        new DimensionToEvaluate("D2", .2),
+        new DimensionToEvaluate("D3", .2),
+        new DimensionToEvaluate("D4", .2),
+        new DimensionToEvaluate("D5", .2),
+      ],
+    ),
+  ];
+
+  void addNewSubject(Subject subject) {
+    subjects.clear();
+    subjects.add(subject);
+  }
+
   TextStyle titleStyle =
       TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue);
   TextStyle descriptionStyle =
@@ -142,7 +177,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => new Subjects(),
+                    builder: (context) => new Subjects(addNewSubject),
                   ),
                 );
                 //stuff
@@ -161,8 +196,19 @@ class _MyHomePageState extends State<MyHomePage> {
               leading: const Icon(Icons.assessment),
               title: Text("Habilidades"),
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Student()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Student(
+                              this.subjects.isEmpty
+                                  ? defaultHabilities
+                                  : this
+                                      .subjects
+                                      .first
+                                      .competences
+                                      .first
+                                      .habilities,
+                            )));
               },
             ),
           ],
@@ -202,7 +248,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => new Subjects(),
+                          builder: (context) => new Subjects(addNewSubject),
                         ),
                       )),
               tappableCard(
@@ -211,7 +257,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => new Subjects(),
+                          builder: (context) => new Subjects(addNewSubject),
                         ),
                       )),
               tappableCard(
@@ -220,7 +266,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => new Student(),
+                          builder: (context) => new Student(
+                            this.subjects.isEmpty
+                                ? defaultHabilities
+                                : this
+                                    .subjects
+                                    .first
+                                    .competences
+                                    .first
+                                    .habilities,
+                          ),
                         ),
                       )),
             ],
